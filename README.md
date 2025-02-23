@@ -49,24 +49,24 @@ pichart = px.pie(x, values='Count',names='rating',title='Distribution of content
 pichart.show() ```
 
 
-``` python
+
 directorlist = pd.DataFrame()
 directorlist['Director'] = data['director'].str.split(',',expand =True).stack()
 group_director = directorlist.groupby('Director').size().reset_index(name ='TotalCounts')
 goup_director = group_director[group_director['Director']!='not available']
 groupdirector.sort_values(by=['TotalCounts'],ascending =False,inplace = True)
-group_director  ```
+group_director 
 
 
-```python
+
 import seaborn as sns
 import matplotlib.pyplot as pt
 sns.barplot(x='Director', y = 'TotalCounts', data = top5)
 pt.title('Top 5 Director on Netflix')
-pt.show() ```
+pt.show()
 
 
-```python
+
 cast = data[['cast','title','show_id']]
 cast['cast'] = cast['cast'].str.split(',')
 cast_explode = cast.explode('cast').reset_index(drop=True)
